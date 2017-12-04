@@ -26,7 +26,7 @@ npm manifest:
       "nodemon": "^1.12.1"
     }
     "scripts": {
-      "dev": "nodemon server.js"
+      "dev": "nodemon api/server.js"
     }
   }
 
