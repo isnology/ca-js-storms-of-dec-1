@@ -4,16 +4,13 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 // Connect to our local database
-mongoose.connect(
-    'mongodb://localhost/storms',
-    { useMongoClient: true }
-)
-.then(() => {
-  console.log('Successfully connected to database')
-})
-.catch((error) => {
-  // If there was an error connecting to the database
-  console.error('Error connecting to MongoDB database', error)
-})
+mongoose.connect('mongodb://localhost/storms', { useMongoClient: true })
+  .then(() => {
+    console.log('Successfully connected to database')
+  })
+  .catch((err) => {
+    // If there was an error connecting to the database
+    console.error('Error connecting to MongoDB database', err.message)
+  })
 
 module.exports = mongoose

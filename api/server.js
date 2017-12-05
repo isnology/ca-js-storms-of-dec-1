@@ -1,4 +1,8 @@
-require('dotenv').config()
+const Path = require('path')
+const dotEnvPath = Path.resolve('./.env')
+
+require('dotenv').config({path: dotEnvPath})
+
 const express = require('express')
 const bodyParser = require('body-parser')
 

@@ -1,15 +1,20 @@
 const express = require('express')
 const Rainfall = require('../models/rainfall')
 const { rain } = require('../apixu')
+const _ = require('lodash')
 
 const router = express.Router()
 
-router.get('/melbourne', (req, res) => {
-  //Artist.find().then((artists) => {
-  //  res.json(artists)
-  response = rain('Melbourne', '2017-12-03')
-  console.log(response)
+router.get('/melbourne/:date', (req, res) => {
+  const date = req.params.date
+
+  Rainfall.find({ city: 'Melbourne', date: date })
+  .then((rainfall) => {
+    res.json(rainfall)
+  })
+  .catch((error) => {
+    res.json(error.message)
+  })
 })
 
 module.exports = router
-
