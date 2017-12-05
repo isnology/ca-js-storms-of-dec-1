@@ -8,6 +8,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
+    "moment": "^2.19.3",
     "mongoose": "^4.13.6"
   },
   "devDependencies": {
@@ -15,6 +16,8 @@
   },
   "scripts": {
     "dev": "nodemon api/server.js",
-    "seed": "node api/models/seeds.js"
+    "seed": "node api/models/seeds.js",
+    "drop": "node api/models/drop.js",
+    "reset": "npm run drop && npm run seed"
   }
 }

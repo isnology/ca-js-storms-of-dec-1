@@ -12,7 +12,9 @@ function loadDB(city, date) {
   rain(city, date)
   .then((result) => {
     const attributes = {
-      date: result.forecast.forecastday[0].date.substring(0, 11),
+      year: result.forecast.forecastday[0].date.substring(0, 4),
+      month: result.forecast.forecastday[0].date.substring(5, 7),
+      day: result.forecast.forecastday[0].date.substring(8, 10),
       city: result.location.name,
       quantity: result.forecast.forecastday[0].day.totalprecip_mm
     }
@@ -21,21 +23,20 @@ function loadDB(city, date) {
   .then((rainfall) => {               // when this has completed this will be called
     console.log('Created rainfall record: ', rainfall)
   })
-  .catch(err => console.log(err.message))
+  .catch(err => {
+    console.log(err)
+    console.log(err.message)
+  })
 }
 
-const date = '2017-11-'
+const date = '2017-11-';
 
-_.range(1, 31).forEach(day => {
-  loadDB('Melbourne', date + day.toString())
-})
+_.range(7, 31).forEach(day => {
+  const fullDate = date + day.toString()
+  loadDB('Melbourne', fullDate)
+  loadDB('Wellington', fullDate)
+  loadDB('Sydney', fullDate)
+});
 
-_.range(1, 31).forEach(day => {
-  loadDB('Sydney', date + day.toString())
-})
 
-_.range(1, 31).forEach(day => {
-  loadDB('Wellington', date + day.toString())
-})
-
-mongoose.connection.close()
+// mongoose.connection.close();
